@@ -1,7 +1,7 @@
 {
   "name": "Focus Fuse",
   "version": "0.1.0",
-  "description": "Saving timestamps in YT videos",
+  "description": "The perfect productivity companion",
   "permissions": [
     "storage",
     "tabs"
@@ -26,7 +26,7 @@
     {
       "resources": [
         "assets/bookmark.png",
-        "assets/play.png",
+        "assetdds/play.png",
         "assets/delete.png",
         "assets/save.png"
       ],
@@ -41,7 +41,7 @@
       "24": "assets/ext-icon.png",
       "32": "assets/ext-icon.png"
     },
-    "default_title": "My YT Bookmarks",
+    "default_title": "Focus Fuse",
     "default_popup": "popup.html"
   },
   "manifest_version": 3
