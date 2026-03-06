@@ -1,10 +1,92 @@
-<link href="popup.css" rel="stylesheet" type="text/css" />
-<script type="module" src="popup.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container">
-  <div>
-    <div class="title">Your bookmarks for this video</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFuse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="popup.css" rel="stylesheet">
+</head>
 
-    <div class="bookmarks" id="bookmarks"></div>
-  </div>
-</div>
+<body>
+    <div class="app-container">
+
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <div class="fuse-icon"></div>
+                FocusFuse
+            </div>
+            <button id="btn-options" class="icon-btn" title="Dashboard">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </button>
+        </header>
+
+        <!-- View: Setup Session -->
+        <div id="view-setup" class="view active">
+            <h2 class="title">Ignite Your Focus</h2>
+            <p class="subtitle">Commit to a task and light the fuse.</p>
+
+            <div class="input-group">
+                <label for="task-input">What will you work on?</label>
+                <input type="text" id="task-input" placeholder="e.g. Write Database Spec" autocomplete="off" />
+            </div>
+
+            <div class="duration-selector">
+                <label>Quick Select</label>
+                <div class="pill-group">
+                    <button class="dur-pill" data-mins="15">15m</button>
+                    <button class="dur-pill active" data-mins="30">30m</button>
+                    <button class="dur-pill" data-mins="60">60m</button>
+                    <button class="dur-pill" data-mins="90">90m</button>
+                </div>
+
+                <div class="duration-header mt-4">
+                    <label>Custom Focus</label>
+                    <span id="slider-val">30m</span>
+                </div>
+                <input type="range" id="duration-slider" class="styled-slider" min="5" max="240" step="5" value="30" />
+                <div class="slider-labels">
+                    <span>5m</span>
+                    <span>4h</span>
+                </div>
+            </div>
+
+            <button id="btn-ignite" class="primary-btn pulse-glow">
+                Ignite Fuse
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    class="ml-2">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- View: Active Session -->
+        <div id="view-active" class="view">
+            <div class="active-badge">ACTIVE SESSION</div>
+            <h2 id="active-task-name" class="active-task">Writing Docs</h2>
+
+            <div class="timer-container">
+                <!-- SVG Circle Timer -->
+                <svg class="timer-svg" viewBox="0 0 100 100">
+                    <circle class="timer-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="timer-progress" cx="50" cy="50" r="45"></circle>
+                </svg>
+                <div class="timer-text" id="time-remaining">30:00</div>
+            </div>
+
+            <button id="btn-abort" class="ghost-btn danger">
+                Abandon Task (Blow Fuse)
+            </button>
+        </div>
+
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

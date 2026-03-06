@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFuse Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="options.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background aesthetics -->
+    <div class="bg-mesh"></div>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="fuse-icon"></div>
+                <h2>FocusFuse</h2>
+            </div>
+
+            <nav>
+                <button class="nav-item active" data-target="dashboard">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Dashboard
+                </button>
+                <button class="nav-item" data-target="blocklist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    Distractions
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area">
+
+            <!-- Dashboard View -->
+            <section id="view-dashboard" class="view active">
+                <header class="section-header">
+                    <h1>Your Focus Analytics</h1>
+                    <p>Track your flow state and managed distractions.</p>
+                </header>
+
+                <div class="stats-grid">
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon bg-blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Focus Time</h3>
+                            <div class="stat-value" id="stat-time">0h 0m</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon bg-green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981"
+                                stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Successful Fuses</h3>
+                            <div class="stat-value text-green" id="stat-success">0</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon bg-red">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444"
+                                stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Blown Fuses</h3>
+                            <div class="stat-value text-red" id="stat-blown">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-section glass-card mt-8">
+                    <h3>Recent Sessions</h3>
+                    <div class="table-container">
+                        <table id="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Duration</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- rows populated by JS -->
+                            </tbody>
+                        </table>
+                        <div id="history-empty" class="empty-state" style="display: none;">
+                            No sessions found. Ignite your first fuse!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blocklist View -->
+            <section id="view-blocklist" class="view">
+                <header class="section-header">
+                    <h1>Distracting Sites</h1>
+                    <p>Websites that require an "Intent Check" to access during active focus.</p>
+                </header>
+
+                <div class="blocklist-manager glass-card">
+                    <div class="add-domain-form">
+                        <input type="text" id="domain-input" placeholder="e.g. reddit.com, news.ycombinator.com"
+                            autocomplete="off" />
+                        <button id="btn-add-domain" class="primary-btn">Add Site</button>
+                    </div>
+
+                    <div class="list-container mt-6">
+                        <ul id="domain-list">
+                            <!-- li populated by JS -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script at bottom so it loads fast -->
+    <script src="options.js"></script>
+</body>
+
+</html>

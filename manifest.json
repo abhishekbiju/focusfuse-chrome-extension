@@ -1,48 +1,34 @@
 {
-  "name": "Focus Fuse",
-  "version": "0.1.0",
-  "description": "The perfect productivity companion",
+  "manifest_version": 3,
+  "name": "FocusFuse",
+  "version": "1.0.0",
+  "description": "Maintain deep work by intercepting distracting browsing behaviors before they derail focus.",
   "permissions": [
     "storage",
-    "tabs"
+    "alarms",
+    "scripting"
   ],
   "host_permissions": [
-    "https://*.youtube.com/*"
+    "<all_urls>"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://*.youtube.com/*"
-      ],
-      "js": [
-        "contentScript.js"
-      ]
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "assets/bookmark.png",
-        "assetdds/play.png",
-        "assets/delete.png",
-        "assets/save.png"
-      ],
-      "matches": [
-        "https://*.youtube.com/*"
-      ]
+      "matches": ["<all_urls>"],
+      "css": ["content.css"],
+      "js": ["contentScript.js"],
+      "run_at": "document_start"
     }
   ],
   "action": {
-    "default_icon": {
-      "16": "assets/ext-icon.png",
-      "24": "assets/ext-icon.png",
-      "32": "assets/ext-icon.png"
-    },
-    "default_title": "Focus Fuse",
+    "default_title": "FocusFuse",
     "default_popup": "popup.html"
   },
-  "manifest_version": 3
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
 }
