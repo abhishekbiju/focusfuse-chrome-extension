@@ -8,7 +8,7 @@
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --danger: #f43f5e;
-  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
@@ -365,4 +365,20 @@ input[type=range]::-webkit-slider-thumb:hover {
 
 .ghost-btn.danger:hover {
   background: rgba(244, 63, 94, 0.1);
+}
+
+.ghost-btn.success {
+  background: transparent;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+}
+
+.ghost-btn.success:hover {
+  background: rgba(16, 185, 129, 0.1);
 }

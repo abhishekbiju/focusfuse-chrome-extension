@@ -1,15 +1,19 @@
 {
   "manifest_version": 3,
   "name": "FocusFuse",
-  "version": "1.0.0",
-  "description": "Maintain deep work by intercepting distracting browsing behaviors before they derail focus.",
+  "version": "1.1.0",
+  "description": "Stay in deep work: intent checks on distracting sites, Pomodoro-style focus sessions, and a dashboard for your discipline streak.",
+  "minimum_chrome_version": "109",
   "permissions": [
     "storage",
     "alarms",
-    "scripting"
+    "scripting",
+    "notifications",
+    "tabs"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "http://*/*",
+    "https://*/*"
   ],
   "background": {
     "service_worker": "background.js",
@@ -17,18 +21,38 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "css": ["content.css"],
+      "matches": ["http://*/*", "https://*/*"],
       "js": ["contentScript.js"],
       "run_at": "document_start"
     }
   ],
   "action": {
-    "default_title": "FocusFuse",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    },
+    "default_title": "FocusFuse — focus session & distraction guard",
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
   },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Period",
+        "mac": "Command+Shift+Period"
+      },
+      "description": "Open FocusFuse"
+    }
   }
 }

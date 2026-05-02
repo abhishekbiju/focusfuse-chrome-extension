@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FocusFuse Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="options.css" rel="stylesheet">
 </head>
 
@@ -37,11 +36,22 @@
                     </svg>
                     Distractions
                 </button>
+                <button class="nav-item" data-target="settings">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                    </svg>
+                    Settings
+                </button>
             </nav>
         </aside>
 
         <!-- Main Content -->
         <main class="content-area">
+
+            <div id="welcome-banner" class="welcome-banner" style="display: none;">
+                <strong>Welcome to FocusFuse.</strong> Add your worst distractions under Distractions, then start a session from the toolbar. Your browsing data never leaves this device — only your session stats are stored locally.
+            </div>
 
             <!-- Dashboard View -->
             <section id="view-dashboard" class="view active">
@@ -100,7 +110,7 @@
                             <thead>
                                 <tr>
                                     <th>Task</th>
-                                    <th>Duration</th>
+                                    <th>Time</th>
                                     <th>Status</th>
                                     <th>Date</th>
                                 </tr>
@@ -136,6 +146,48 @@
                         </ul>
                     </div>
                 </div>
+            </section>
+
+            <section id="view-settings" class="view">
+                <header class="section-header">
+                    <h1>Behavior</h1>
+                    <p>Tune intent overlays, grace access, and analytics export. Defaults are sensible for most people.</p>
+                </header>
+
+                <div class="settings-grid">
+                    <div class="glass-card settings-card">
+                        <h3>Intent overlay</h3>
+                        <label class="field-label" for="set-cooldown">Breathing countdown (seconds)</label>
+                        <input type="number" id="set-cooldown" min="5" max="120" step="1" />
+                        <label class="field-label mt-4" for="set-grace">Temporary site access (minutes)</label>
+                        <input type="number" id="set-grace" min="1" max="60" step="1" />
+                        <label class="field-label mt-4" for="set-doom">Doomscroll threshold (scroll events)</label>
+                        <input type="number" id="set-doom" min="30" max="500" step="10" />
+                        <p class="field-hint">After you allow a site, FocusFuse watches scroll volume. Exceeding this triggers another intent check.</p>
+                    </div>
+
+                    <div class="glass-card settings-card">
+                        <h3>Toolbar badge</h3>
+                        <label class="field-label" for="set-badge">Clear red “blown” badge after (minutes)</label>
+                        <input type="number" id="set-badge" min="1" max="60" step="1" />
+                    </div>
+
+                    <div class="glass-card settings-card">
+                        <h3>Your data</h3>
+                        <p class="field-hint">Export is a JSON snapshot of history, blocklist, and settings. Import replaces those keys.</p>
+                        <div class="settings-actions">
+                            <button type="button" id="btn-export" class="primary-btn ghost">Export JSON</button>
+                            <label class="file-import-label primary-btn ghost">
+                                Import JSON
+                                <input type="file" id="btn-import" accept="application/json,.json" hidden />
+                            </label>
+                            <button type="button" id="btn-clear-history" class="primary-btn danger-outline">Clear session history</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="btn-save-settings" class="primary-btn mt-8">Save settings</button>
+                <p id="settings-saved" class="settings-saved" style="display: none;">Saved.</p>
             </section>
         </main>
     </div>
